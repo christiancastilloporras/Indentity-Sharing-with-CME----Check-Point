@@ -2,8 +2,9 @@
 
 : '
 ------- No supported in production -------
-Enable monitoring blade
-Needs to be run in Autoprovision template with "MONITORING" as a custom parameter
+Enable Identity Sharing feature under IA
+Needs to be run in Autoprovision template with "IDSHARING" as a custom parameter and also 
+Rulebase name to install as second Parameter and Name of the GW where we will take the identities
 ------- No supported in production -------
 '
 
