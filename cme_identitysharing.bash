@@ -37,7 +37,7 @@ POLICY_PACKAGE_NAME=$RULEBASE
 	GW_JSON=$(mgmt_cli --session-id $SID show simple-gateway name $GW_NAME -f json)
 	GW_UID=$(echo $GW_JSON | jq '.uid')
 	GW_JSON_SH=$(mgmt_cli --session-id $SID show simple-gateway name $IDSHARINGGW -f json)
-	GW_UID_SH=$(echo $GW_JSON | jq '.uid')
+	GW_UID_SH=$(echo $GW_JSON_SH | jq '.uid')
 	
 	echo "adding Sharing GW to the list and enabling sharing"
 		
