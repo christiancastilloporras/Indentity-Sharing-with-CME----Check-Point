@@ -15,6 +15,7 @@ GW_NAME=$2
 CUSTOM_PARAMETERS=$3
 RULEBASE=$4
 IDSHARINGGW=$5
+RULEBASE_SH=$6
 
 if [[ $AUTOPROV_ACTION == delete ]]
 then
@@ -30,7 +31,9 @@ if [[ $CUSTOM_PARAMETERS == IDSHARING ]]
 then
 
 INSTALL_STATUS=1
+INSTALL_STATUS_SH=1
 POLICY_PACKAGE_NAME=$RULEBASE
+POLICY_PACKAGE_NAME_SH=$RULEBASE_SH
 
 	echo "Connection to API server"
 	SID=$(mgmt_cli -r true login -f json | jq -r '.sid')
@@ -53,7 +56,15 @@ POLICY_PACKAGE_NAME=$RULEBASE
 			INSTALL_STATUS=$?
 		done
 		
-	echo "Policy Installed" 
+	echo "Policy Installed"
+	
+	echo "Install policy"
+		until [[ $INSTALL_STATUS_SH != 1 ]]; do
+			mgmt_cli --session-id $SID -f json install-policy policy-package $POLICY_PACKAGE_NAME_SH targets $GW_UID_SH
+			INSTALL_STATUS=$?
+		done
+		
+	echo "Policy Installed"
 
         echo "Logging out of session"
         mgmt_cli logout --session-id $SID
