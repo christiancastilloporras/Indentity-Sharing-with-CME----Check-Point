@@ -61,7 +61,7 @@ POLICY_PACKAGE_NAME_SH=$RULEBASE_SH
 	echo "Install policy"
 		until [[ $INSTALL_STATUS_SH != 1 ]]; do
 			mgmt_cli --session-id $SID -f json install-policy policy-package $POLICY_PACKAGE_NAME_SH targets $GW_UID_SH
-			INSTALL_STATUS=$?
+			INSTALL_STATUS_SH=$?
 		done
 		
 	echo "Policy Installed"
